@@ -31,7 +31,7 @@ Where
 For now, we assume that the background function is linear, that is:
 
 ```
-I(x) = A*rect((x - c)/w) + b0 + x*b1
+I(x) = rect((x - c)/w) + b0 + x*b1
 ```
 
 Now that we have modeled the underlying object, we need to model the processing of converting this object into a image.
@@ -64,7 +64,7 @@ Finally, we expect a certain amount of noise to be introduced by the sensor, rea
 
 For now, we model these effects using:
 
-- `N` = "number of bits available in A to D"
+- `N` = "number of gray scale levels available in our sensor's analog to digital converter"
 - `A_max` = "maximum measurable value"
 - `A_min` = "minimum measurable value"
 - `s` = "relative size of the sensor elements, [0, 1]"
