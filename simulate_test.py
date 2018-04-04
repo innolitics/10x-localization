@@ -13,9 +13,9 @@ def params():
             "spacing": 1,
         },
         "digitizer": {
-            "sensor_min": 0,
-            "sensor_max": 1,
-            "num_grayscale_levels": 2**8,
+            "min": 0,
+            "max": 2,
+            "num_levels": 2**8,
         },
         "noise_sigma": 0,
         "image": {
@@ -35,6 +35,11 @@ def image_params(params):
 @pytest.fixture
 def sensor_params(params):
     return params["sensors"]
+
+
+@pytest.fixture
+def digitizer_params(params):
+    return params["digitizer"]
 
 
 def test_integrate_sensor_no_overlap_no_baseline(image_params):
@@ -81,3 +86,19 @@ def test_sensor_extents_single_half_width():
 def test_sensor_extents_single_half_width_half_spacing():
     assert sensor_extent(0, 0.5, 0.5) == (0, 0.5)
     assert sensor_extent(1, 0.5, 0.5) == (0.5, 1.0)
+
+
+def test_digitize_below_min(digitizer_params):
+    assert digitize(digitizer_params, -10) == 0
+
+
+def test_digitize_above_max(digitizer_params):
+    assert digitize(digitizer_params, 10) == digitizer_params["num_levels"] - 1
+
+
+def test_digitize_rounded_down(digitizer_params):
+    assert digitize(digitizer_params, 0.000001) == 0
+
+
+def test_digitize_rounded_up(digitizer_params):
+    assert digitize(digitizer_params, 2.0 - 0.000001) == digitizer_params["num_levels"] - 1

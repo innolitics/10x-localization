@@ -35,6 +35,11 @@ def add_noise(sigma, result):
     return result + random.gauss(0, sigma)
 
 
-def digitize(params, result):
-    # TODO: implement
-    return result
+def digitize(digitizer, result):
+    if result <= digitizer["min"]:
+        return 0
+    elif result >= digitizer["max"]:
+        return digitizer["num_levels"] - 1
+    else:
+        normalized = (result - digitizer["min"])/(digitizer["max"] - digitizer["min"])
+        return int(round(normalized*(digitizer["num_levels"] - 1)))
