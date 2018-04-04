@@ -1,7 +1,7 @@
 import math
 import pytest
 
-from simulate import integrate_sensor, digitize, sensor_extents
+from simulate import integrate_sensor, digitize, sensor_extent
 
 
 @pytest.fixture
@@ -68,19 +68,16 @@ def test_integrate_sensor_partial_overlap_linear_baseline(image_params):
     assert math.isclose(actual, expected)
 
 
-def test_sensor_extents_single_full_width(sensor_params):
-    sensor_params["count"] = 2
-    assert sensor_extents(sensor_params) == [(0.0, 1.0), (1.0, 2.0)]
+def test_sensor_extents_single_full_width():
+    assert sensor_extent(0, 1, 1) == (0.0, 1.0)
+    assert sensor_extent(1, 1, 1) == (1.0, 2.0)
 
 
-def test_sensor_extents_single_half_width(sensor_params):
-    sensor_params["count"] = 2
-    sensor_params["width"] = 0.5
-    assert sensor_extents(sensor_params) == [(0.25, 0.75), (1.25, 1.75)]
+def test_sensor_extents_single_half_width():
+    assert sensor_extent(0, 0.5, 1) == (0.25, 0.75)
+    assert sensor_extent(1, 0.5, 1) == (1.25, 1.75)
 
 
-def test_sensor_extents_single_half_width_half_spacing(sensor_params):
-    sensor_params["count"] = 2
-    sensor_params["width"] = 0.5
-    sensor_params["spacing"] = 0.5
-    assert sensor_extents(sensor_params) == [(0, 0.5), (0.5, 1.0)]
+def test_sensor_extents_single_half_width_half_spacing():
+    assert sensor_extent(0, 0.5, 0.5) == (0, 0.5)
+    assert sensor_extent(1, 0.5, 0.5) == (0.5, 1.0)
