@@ -17,7 +17,7 @@ def params():
             "sensor_max": 1,
             "num_grayscale_levels": 2**8,
         },
-        "sigma": 0,
+        "noise_sigma": 0,
         "image": {
             "baseline_constant": 0,
             "baseline_slope": 0,

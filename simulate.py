@@ -1,12 +1,13 @@
+import random
+
 import numpy as np
 
 
 def simulate(params):
-    image = np.empty(params["num_pixels"])
-    s = params["sensor_width"]
-    for start, stop in sensor_extents(params["sensors"]):
-        result = integrate_sensor(params["image_params"], start, stop)
-        result_with_noise = add_noise(params, result)
+    image = np.empty(params["sensors"]["count"])
+    for k, extents in enumerate(sensor_extents(params["sensors"])):
+        result = integrate_sensor(params["image_params"], *extents)
+        result_with_noise = add_noise(params["noise_sigma"], result)
         image[k] = digitize(params, result_with_noise)
     return image
 
@@ -30,9 +31,8 @@ def integrate_sensor(image, start, stop):
     return baseline_contribution + fiducial_contribution
 
 
-def add_noise(params, result):
-    # TODO: implement
-    return result
+def add_noise(sigma, result):
+    return result + random.gauss(0, sigma)
 
 
 def digitize(params, result):
