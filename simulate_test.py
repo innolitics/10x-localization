@@ -12,7 +12,6 @@ def params():
         "sensors": {
             "count": 100,
             "width": 1,
-            "spacing": 1,
         },
         "digitizer": {
             "min": 0,
@@ -76,18 +75,13 @@ def test_integrate_sensor_partial_overlap_linear_baseline(object_params):
 
 
 def test_sensor_extents_single_full_width():
-    assert sensor_extent(0, 1, 1) == (0.0, 1.0)
-    assert sensor_extent(1, 1, 1) == (1.0, 2.0)
+    assert sensor_extent(0, 1) == (-0.5, 0.5)
+    assert sensor_extent(1, 1) == (0.5, 1.5)
 
 
 def test_sensor_extents_single_half_width():
-    assert sensor_extent(0, 0.5, 1) == (0.25, 0.75)
-    assert sensor_extent(1, 0.5, 1) == (1.25, 1.75)
-
-
-def test_sensor_extents_single_half_width_half_spacing():
-    assert sensor_extent(0, 0.5, 0.5) == (0, 0.5)
-    assert sensor_extent(1, 0.5, 0.5) == (0.5, 1.0)
+    assert sensor_extent(0, 0.5) == (-0.25, 0.25)
+    assert sensor_extent(1, 0.5) == (0.75, 1.25)
 
 
 def test_digitize_below_min(digitizer_params):
@@ -120,7 +114,7 @@ def test_digitize_rounded_simple(digitizer_params):
 def test_generate_image_defaults(params):
     params["sensors"]["count"] = 10
     params["digitizer"]["num_levels"] = 4
-    params["object"]["fiducial_center"] = 4
+    params["object"]["fiducial_center"] = 2.5
     actual = generate_image(params)
-    expected = np.array([0, 0, 1, 2, 2, 1, 0, 0, 0, 0], dtype=np.int64)
+    expected = np.array([0, 1, 2, 2, 1, 0, 0, 0, 0, 0], dtype=np.int64)
     assert np.all(actual == expected)

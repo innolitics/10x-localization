@@ -13,11 +13,10 @@ def generate_image(params):
 
 
 def sensor_extents(sensors):
-    return [sensor_extent(k, sensors["width"], sensors["spacing"]) for k in range(sensors["count"])]
+    return [sensor_extent(k, sensors["width"]) for k in range(sensors["count"])]
 
 
-def sensor_extent(sensor_index, width, spacing):
-    center = (sensor_index + 0.5)*spacing
+def sensor_extent(center, width):
     return (center - width/2, center + width/2)
 
 
