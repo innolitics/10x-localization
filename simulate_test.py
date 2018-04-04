@@ -1,7 +1,7 @@
 import math
 import pytest
 
-from simulate import integrate_sensor, digitize
+from simulate import integrate_sensor, digitize, sensor_extents
 
 
 @pytest.fixture
@@ -30,6 +30,11 @@ def params():
 @pytest.fixture
 def image_params(params):
     return params["image"]
+
+
+@pytest.fixture
+def sensor_params(params):
+    return params["sensors"]
 
 
 def test_integrate_sensor_no_overlap_no_baseline(image_params):
@@ -61,3 +66,21 @@ def test_integrate_sensor_partial_overlap_linear_baseline(image_params):
     actual = integrate_sensor(image_params, 48, 49)
     expected = 0.5 + triangle + rectangle
     assert math.isclose(actual, expected)
+
+
+def test_sensor_extents_single_full_width(sensor_params):
+    sensor_params["count"] = 2
+    assert sensor_extents(sensor_params) == [(0.0, 1.0), (1.0, 2.0)]
+
+
+def test_sensor_extents_single_half_width(sensor_params):
+    sensor_params["count"] = 2
+    sensor_params["width"] = 0.5
+    assert sensor_extents(sensor_params) == [(0.25, 0.75), (1.25, 1.75)]
+
+
+def test_sensor_extents_single_half_width_half_spacing(sensor_params):
+    sensor_params["count"] = 2
+    sensor_params["width"] = 0.5
+    sensor_params["spacing"] = 0.5
+    assert sensor_extents(sensor_params) == [(0, 0.5), (0.5, 1.0)]

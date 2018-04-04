@@ -13,6 +13,17 @@ def simulate(params):
     return image
 
 
+def sensor_extents(sensors):
+    extents = []
+    for k in range(sensors["count"]):
+        c = (k + 0.5)*sensors["spacing"]
+        w = sensors["width"]
+        start = c - w/2
+        stop = c + w/2
+        extents.append((start, stop))
+    return extents
+
+
 def integrate_sensor(image, start, stop):
     dx = stop - start
     baseline_at_start = image["baseline_constant"] + image["baseline_slope"]*start
