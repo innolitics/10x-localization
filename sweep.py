@@ -32,21 +32,46 @@ def main():
     parser = argparse.ArgumentParser(prog='sweep')
     parser.add_argument('key', type=lambda s: s.split('.'), help='key, e.g. "object.fiducial_width"')
     parser.add_argument('range', type=str, help='range, e.g. "3:10:0.5"')
-    parser.add_argument('--algorithm', type=str, default='center_of_mass', help='algorithm name, e.g. "center_of_mass"')
+    parser.add_argument('-a', '--algorithms', type=str, default='center_of_mass',
+                        help='algorithms for sweeping as a comma-delimited list, e.g.\
+                              "center_of_mass,center_of_mass_with_threshold"')
     parser.add_argument('--output', type=str, default=None, help='file name for the output graph')
     parser.add_argument('--samples', type=int, default=100, help='number of samples per key value')
     args = parser.parse_args()
 
     args.range = value_range(args.range)  # XXX couldn't get arg parse to do this directly ...
-    num_values = len(args.range)
-    num_samples = args.samples
 
+    sweep_params = (args.key, args.range, args.samples)
+    algo_names = args.algorithms.split(',')
+    algos = [getattr(algorithms, algo_name) for algo_name in algo_names]
+    algo_errors = [algorithm_err(algo, sweep_params) for algo in algos]
+
+    for mean, std in algo_errors:
+        plt.errorbar(args.range, mean, yerr=std, fmt='o')
+    plt.legend(algo_names)
+    plt.xlabel(' '.join(args.key).replace('_', ' '))
+    plt.ylabel('fiducial localization error')
+    plt.grid()
+    plt.ylim(ymin=0)
+    plt.title('{} sweep, N = {}'.format(args.key[-1].replace('_', ' '), args.samples))
+    if args.output is None:
+        plt.show()
+    else:
+        plt.savefig(args.output)
+
+def algorithm_err(algorithm, sweep_params):
+    '''
+    Measure the specified `algorithm`'s error over `sweep_params`, which includes
+
+    - `key`: the simulation parameter to sweep
+    - `key_range`: the range of values to sweep
+    - `num_samples`: the number of randomized trials to perform per value
+    '''
+    key, key_range, num_samples = sweep_params
+    num_values = len(key_range)
     errors = np.empty((num_values, num_samples), dtype=np.double)
-
-    algorithm = getattr(algorithms, args.algorithm)
-
-    for i, value in enumerate(args.range):
-        set_value(params, args.key, value)
+    for i, value in enumerate(key_range):
+        set_value(params, key, value)
         for j in range(num_samples):
             center = random.uniform(40, 60)
             params['object']['fiducial_center'] = center
@@ -56,18 +81,7 @@ def main():
 
     error_stds = np.std(errors, axis=1)
     error_means = np.mean(errors, axis=1)
-
-    plt.errorbar(args.range, error_means, yerr=error_stds, fmt='o')
-    plt.xlabel(' '.join(args.key).replace('_', ' '))
-    plt.ylabel('fiducial localization error')
-    plt.grid()
-    plt.ylim(ymin=0)
-    plt.title('{}, N = {}'.format(args.algorithm.replace('_', ' '), args.samples))
-    if args.output is None:
-        plt.show()
-    else:
-        plt.savefig(args.output)
-
+    return error_stds, error_means
 
 def value_range(range_str):
     parts = [float(s) for s in range_str.split(':')]
