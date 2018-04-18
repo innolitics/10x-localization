@@ -10,4 +10,5 @@ pyparsing==2.2.0
 pytest==3.5.0
 python-dateutil==2.7.2
 pytz==2018.3
+scipy==1.0.1
 six==1.11.0

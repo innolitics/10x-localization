@@ -59,6 +59,7 @@ def main():
     else:
         plt.savefig(args.output)
 
+
 def algorithm_err(algorithm, sweep_params):
     '''
     Measure the specified `algorithm`'s error over `sweep_params`, which includes
@@ -83,6 +84,7 @@ def algorithm_err(algorithm, sweep_params):
     error_means = np.mean(errors, axis=1)
     return error_stds, error_means
 
+
 def value_range(range_str):
     parts = [float(s) for s in range_str.split(':')]
     if len(parts) in [2, 3]:
@@ -96,7 +98,6 @@ def set_value(params, keys, value):
         params[keys[0]] = value
     else:
         set_value(params[keys[0]], keys[1:], value)
-
 
 
 if __name__ == "__main__":
