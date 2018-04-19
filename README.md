@@ -1,8 +1,12 @@
-# 10x Localization Project
+# Estimating Localization Errors for Point-Based Registration
 
 This repository contains code developed as one of [Innolitic's](http://innolitics.com) [10x mini-projects](http://innolitics.com/10x/discussions/).
 
 ## Introduction
+
+Point-based registration algorithms are a component of many medical imaging applications.
+
+The performance of point-based registration algorithms depends largely on how well the points (or fiducials) can be localized.
 
 - problem has shown up on multiple client projects
 - sensors; integration vs sampling
