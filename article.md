@@ -18,15 +18,32 @@ For example, we may want to register:
 
 Registering these images will ensure that the patient's position within the planning CT coordinate system is known and can be adjusted.  Registration errors will result in misalignments going uncorrected, and less effective radiation therapy because healthy tissue will be irradiated instead of the tumor.
 
-Many medical imaging applications require registration is a frequently encountered building block of more complex image processing algorithms.
+There are many types of registration problems, for example:
+
+- registering a series of CTs taken of the same patient at different points in time
+- registering a set of images from different patients
+- registering an MRI with a CT
+- registering a 2D x-ray projection with a 3D CT.
+
+There are also types of registrations one can apply to these problems, for example:
+
+- rigid (i.e., translation and rotation)
+- affine (i.e., translation, rotation, reflections, and scaling)
+- constrained non-rigid.
+
+See references [1] and [2] for more general categorizations of registration problems.
 
 ## Types of Registration Algorithms
 
-## Quick Overview of Fiducial-Based Registration Algorithms
+Overview of types of registration algorithms.
 
-## Relationship Between FLE and Registration Error
+The most common approaches to 
 
-## Factors that can Affect FLE
+## Fiducial-Based Registration Algorithms
+
+## Fiducial Localization Error (FLE) and Registration Error
+
+## Factors that Affect FLE
 
 ## Using a Simulator to Estimate FLE
 
