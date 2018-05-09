@@ -13,10 +13,10 @@ Image registration is the process of transforming two or more images into the sa
 
 For example, we may want to register:
 
-- a high-resolution CT of a patient, used to planning radiation therapy or an image-guided surgery
-- a low-resolution cone-beam CT of the immobilized patient, taken in the radiation therapy device or on the surgery table.
+- a high-resolution CT of a patient, used to plan radiation therapy
+- a low-resolution cone-beam CT of the immobilized patient, taken from within the [linac](https://en.wikipedia.org/wiki/Linear_particle_accelerator)
 
-Registering these images will ensure that the patient's position within the planning CT coordinate system is known.  Registration errors will result in misalignment of the patient, and ultimately may mean that healthy tissue is irradiated instead of the tumor, or that the surgery is ineffective.
+Registering these images will ensure that the patient's position within the planning CT coordinate system is known and can be adjusted.  Registration errors will result in misalignments going uncorrected, and less effective radiation therapy because healthy tissue will be irradiated instead of the tumor.
 
 Many medical imaging applications require registration is a frequently encountered building block of more complex image processing algorithms.
 
