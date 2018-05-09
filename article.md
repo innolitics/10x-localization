@@ -26,9 +26,15 @@ There are also many types of transformations one use, for example:
 
 See references [1] and [2] for more general categorizations of registration problems.
 
-## Fiducial-Based Registration Algorithms
+## Point-Based Registration Algorithms
 
+A common class of registration algorithms works by locating and matching a set of features in each image, and then finding the transformation that co-aligns these features.
 
+The most commonly used features are points, and frequently, these points are objects that are placed into the image in order to simplify the registration process.
+
+Once the points have been located and matched, frequently we minimize the root mean square distances between the pairs of match points in order to find the optimal transformation.  However, other approaches for deducing the transformation may be preferable, depending on the application.
+
+![Point Based Registration Example](images/point-based-registration.svg)
 
 ## Fiducial Localization Error (FLE) and Registration Error
 

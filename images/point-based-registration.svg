@@ -1,0 +1,25 @@
+<svg width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#F5E6CC" d="M10 10h280v280H10z"/>
+        <path fill="#FBD9D9" d="M510 10h280v280H510z"/>
+        <g transform="translate(483 28)">
+            <g transform="rotate(-29 256.823 66.419)">
+                <ellipse fill="#B7B5B5" transform="rotate(10 137 96.427)" cx="137" cy="96.427" rx="124.818" ry="75.906"/>
+                <ellipse fill="#CDCDCD" transform="rotate(-10 102.397 96.033)" cx="102.397" cy="96.033" rx="42.137" ry="40.329"/>
+            </g>
+            <circle fill="#FFF" cx="67" cy="127" r="5"/>
+            <circle fill="#FFF" cx="283" cy="146" r="5"/>
+            <circle fill="#FFF" cx="234" cy="71" r="5"/>
+        </g>
+        <g transform="rotate(44 184.96 119.305)">
+            <g transform="rotate(-29 256.823 66.419)">
+                <ellipse fill="#B7B5B5" transform="rotate(10 137 96.427)" cx="137" cy="96.427" rx="124.818" ry="75.906"/>
+                <ellipse fill="#CDCDCD" transform="rotate(-10 102.397 96.033)" cx="102.397" cy="96.033" rx="42.137" ry="40.329"/>
+            </g>
+            <circle fill="#FFF" cx="67" cy="127" r="5"/>
+            <circle fill="#FFF" cx="283" cy="146" r="5"/>
+            <circle fill="#FFF" cx="234" cy="71" r="5"/>
+        </g>
+        <path d="M255.5 118.5l462-20M255.5 118.5l10.66-3.464.26 5.994-10.92-2.53zM717.5 98.5l-10.92-2.53.26 5.994L717.5 98.5zM237.5 205.5l530-31M237.5 205.5l10.606-3.626.35 5.99L237.5 205.5zM767.5 174.5l-10.957-2.364.35 5.99L767.5 174.5zM94.5 43.5l454 111M94.5 43.5l11.203-.35-1.425 5.83L94.5 43.5zM548.5 154.5l-9.778-5.48-1.425 5.83 11.203-.35z" stroke="#000" fill="#000" stroke-linecap="square"/>
+    </g>
+</svg>
