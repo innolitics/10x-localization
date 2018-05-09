@@ -17,15 +17,15 @@ def sensor_extents(sensors):
 
 
 def sensor_extent(center, width):
-    return (center - width/2, center + width/2)
+    return (center - width / 2, center + width / 2)
 
 
 def integrate_sensor(object_params, start, stop):
     dx = stop - start
-    baseline_at_start = object_params["baseline_constant"] + object_params["baseline_slope"]*start
-    baseline_contribution = dx*baseline_at_start + dx*dx*object_params["baseline_slope"]/2
-    fiducial_start = object_params["fiducial_center"] - object_params["fiducial_width"]/2
-    fiducial_stop = object_params["fiducial_center"] + object_params["fiducial_width"]/2
+    baseline_at_start = object_params["baseline_constant"] + object_params["baseline_slope"] * start
+    baseline_contribution = dx * baseline_at_start + dx * dx * object_params["baseline_slope"] / 2
+    fiducial_start = object_params["fiducial_center"] - object_params["fiducial_width"] / 2
+    fiducial_stop = object_params["fiducial_center"] + object_params["fiducial_width"] / 2
     fiducial_contribution = max(0, min(fiducial_stop, stop) - max(fiducial_start, start))
     return baseline_contribution + fiducial_contribution
 
@@ -40,5 +40,11 @@ def digitize(digitizer, result):
     elif result >= digitizer["max"]:
         return digitizer["num_levels"] - 1
     else:
-        normalized = (result - digitizer["min"])/(digitizer["max"] - digitizer["min"])
-        return int(round(normalized*(digitizer["num_levels"] - 1)))
+        normalized = (result - digitizer["min"]) / (digitizer["max"] - digitizer["min"])
+        return int(round(normalized * (digitizer["num_levels"] - 1)))
+
+
+def undigitize(digitizer, digitized_value):
+    normalized = digitized_value / (digitizer["num_levels"] - 1)
+    result = digitizer["min"] + normalized * (digitizer["max"] - digitizer["min"])
+    return result
