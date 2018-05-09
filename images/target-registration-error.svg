@@ -1,0 +1,34 @@
+<svg width="800" height="426" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#F5E6CC" opacity=".566" d="M93 125h280v280H93z"/>
+        <path fill="#FBD9D9" opacity=".559" d="M246.295 8L429.99 219.319 218.673 403.015 34.976 191.696z"/>
+        <g opacity=".486" transform="rotate(49 107.478 264.914)">
+            <g transform="rotate(-29 256.823 66.419)">
+                <ellipse fill="#B7B5B5" transform="rotate(10 137 96.427)" cx="137" cy="96.427" rx="124.818" ry="75.906"/>
+                <ellipse fill="#CDCDCD" transform="rotate(-10 102.397 96.033)" cx="102.397" cy="96.033" rx="42.137" ry="40.329"/>
+            </g>
+            <circle fill="#FFF" cx="67" cy="127" r="5"/>
+            <circle fill="#FFF" cx="283" cy="146" r="5"/>
+            <circle fill="#FFF" cx="234" cy="71" r="5"/>
+        </g>
+        <g opacity=".447" transform="rotate(44 84.131 279.492)">
+            <g transform="rotate(-29 256.823 66.419)">
+                <ellipse fill="#B7B5B5" transform="rotate(10 137 96.427)" cx="137" cy="96.427" rx="124.818" ry="75.906"/>
+                <ellipse fill="#CDCDCD" transform="rotate(-10 102.397 96.033)" cx="102.397" cy="96.033" rx="42.137" ry="40.329"/>
+            </g>
+            <circle fill="#FFF" cx="67" cy="127" r="5"/>
+            <circle fill="#FFF" cx="283" cy="146" r="5"/>
+            <circle fill="#FFF" cx="234" cy="71" r="5"/>
+        </g>
+        <path d="M184.5 149.5h347.07M334.49 233.5h197.08M314.381 320.5H532.5" stroke="#000" stroke-linecap="square" stroke-dasharray="4"/>
+        <text font-family="HelveticaNeue, Helvetica Neue" font-size="16" fill="#000">
+            <tspan x="547" y="155">TRE = 4.0 mm</tspan>
+        </text>
+        <text font-family="HelveticaNeue, Helvetica Neue" font-size="16" fill="#000">
+            <tspan x="547" y="239">TRE = 0.1 mm</tspan>
+        </text>
+        <text font-family="HelveticaNeue, Helvetica Neue" font-size="16" fill="#000">
+            <tspan x="547" y="323">TRE = 1.5 mm</tspan>
+        </text>
+    </g>
+</svg>
