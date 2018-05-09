@@ -7,7 +7,7 @@ def generate_image(params):
     image = np.empty(int(params["sensors"]["count"]), dtype=np.int64)
     for k, extents in enumerate(sensor_extents(params["sensors"])):
         result = integrate_sensor(params["object"], *extents)
-        result_with_noise = add_noise(params["noise_sigma"], result)
+        result_with_noise = add_noise(params["noise"], result)
         image[k] = digitize(params["digitizer"], result_with_noise)
     return image
 
@@ -30,8 +30,13 @@ def integrate_sensor(object_params, start, stop):
     return baseline_contribution + fiducial_contribution
 
 
-def add_noise(sigma, result):
-    return result + random.gauss(0, sigma)
+def add_noise(noise_params, result):
+    if noise_params['type'] == 'poisson':
+        return result + (np.random.poisson(noise_params['lambda']) / noise_params['lambda']) * (1 - noise_params['contrast'])
+    elif noise_params['type'] == 'gaussian':
+        return result + random.gauss(0, noise_params['sigma'])
+    else:
+        raise Exception(f"Unknown noise distribution {noise_params['type']}")
 
 
 def digitize(digitizer, result):

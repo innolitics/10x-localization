@@ -18,7 +18,15 @@ params = {
         "max": 2,
         "num_levels": 2**8,
     },
-    "noise_sigma": 0.01,
+    "noise": {
+        "type": "poisson",
+        "contrast": 0.5, # Weighting factor of the contrast of the fiducial
+        "lambda": 1000 # approximation of # photons hitting a sensor
+    },
+    # "noise": {
+    #     "type": "gaussian",
+    #     "sigma": 0.01
+    # },
     "object": {
         "baseline_constant": 0.02,
         "baseline_slope": 0,
