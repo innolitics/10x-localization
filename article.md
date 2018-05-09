@@ -7,6 +7,8 @@ Audience:
 - Potential customers at a startup
 - Google (want to have keywords that are related to medical imaging)
 
+Will not assume that the audience has much background with image registrations, simply because this would restrict our relevant audience to too small a size.  THus, the first few sections will be boring for people with knoweldge of image registration.
+
 ## Image Registration
 
 Image registration is the process of transforming two or more images into the same coordinate system.
