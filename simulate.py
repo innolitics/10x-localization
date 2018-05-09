@@ -4,7 +4,7 @@ import numpy as np
 
 
 def generate_image(params):
-    image = np.empty(params["sensors"]["count"], dtype=np.int64)
+    image = np.empty(int(params["sensors"]["count"]), dtype=np.int64)
     for k, extents in enumerate(sensor_extents(params["sensors"])):
         result = integrate_sensor(params["object"], *extents)
         result_with_noise = add_noise(params["noise_sigma"], result)
@@ -13,7 +13,7 @@ def generate_image(params):
 
 
 def sensor_extents(sensors):
-    return [sensor_extent(k, sensors["width"]) for k in range(sensors["count"])]
+    return [sensor_extent(k, sensors["width"]) for k in range(int(sensors["count"]))]
 
 
 def sensor_extent(center, width):
